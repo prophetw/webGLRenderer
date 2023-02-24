@@ -4,7 +4,7 @@
 ## Camera
 * Frustum
 * Perspective 
-* Oth
+* Orthographic
 
 ## Scene
 * add Model
@@ -30,10 +30,10 @@
 * other standard 3DModel 
 
 ## worker
-* load your worker to handle some job
+* load workers to handle job
 * async handle some complex task like decode some 3DModel ImageData
 
 ## wasm
-* load wasm library to handle job which javascript cannot do
+* load wasm library to handle job which javascript not good at 
 
 ## 
