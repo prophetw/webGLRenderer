@@ -27,11 +27,13 @@
 ## Load 3D model
 * standard gltf 
 * fbx
-* 
+* other standard 3DModel 
 
 ## worker
 * load your worker to handle some job
 * async handle some complex task like decode some 3DModel ImageData
 
 ## wasm
-* load wasm to handle some job
+* load wasm library to handle job which javascript cannot do
+
+## 

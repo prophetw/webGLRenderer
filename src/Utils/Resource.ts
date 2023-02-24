@@ -1,5 +1,5 @@
 
-export function createImgFromUrl(url: string, width=512, height=512) :Promise<HTMLImageElementj>{
+export function createImgFromUrl(url: string, width=512, height=512) :Promise<HTMLImageElement>{
 
 	return new Promise((resolve, reject)=>{
 
