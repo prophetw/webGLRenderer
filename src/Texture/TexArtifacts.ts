@@ -1,6 +1,7 @@
 import * as twgl from 'twgl.js'
 import { createImgFromUrl } from '../Utils/Resource';
 
+const a = "we"
 async function main() {
 	console.log('iii ', twgl);
 	const canvas = document.getElementById('canvas') as HTMLCanvasElement;
