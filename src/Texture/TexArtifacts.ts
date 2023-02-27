@@ -6,17 +6,18 @@ async function main() {
 	const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 	canvas.height = 600
 	canvas.width = 600
-	if(canvas === null){
+	if (canvas === null) {
+		console.log('1');
 		console.error('canvas with id canvas not exist ');
-		return 
+		return
 	}
 
 	const gl = canvas.getContext('webgl');
 
-	if(gl === null){
+	if (gl === null) {
 
 		console.error(' gl error ');
-		return 
+		return
 	}
 
 	// Define texture coordinates
@@ -71,7 +72,7 @@ async function main() {
 `;
 	const programInfo = twgl.createProgramInfo(gl, [vertexShaderSource, fragmentShaderSource]);
 	console.log(programInfo);
-	const {program} = programInfo
+	const { program } = programInfo
 	gl.useProgram(program);
 
 	// Set attribute and uniform locations

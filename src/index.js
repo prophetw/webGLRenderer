@@ -1,7 +1,9 @@
-import TexArti from './Texture/TexArtifacts'
-import TexArti2 from './Texture/TexArtifacts2'
+import TexArti from './Texture/TexArtifacts';
+import TexArti2 from './Texture/TexArtifacts2';
 
-let ExampleDemo = function(){
+const a = "123"
+
+let ExampleDemo = function () {
 
 }
 

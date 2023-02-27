@@ -1,7 +1,7 @@
 
-export function createImgFromUrl(url: string, width=512, height=512) :Promise<HTMLImageElement>{
+export function createImgFromUrl(url: string, width = 512, height = 512): Promise<HTMLImageElement> {
 
-	return new Promise((resolve, reject)=>{
+	return new Promise((resolve, reject) => {
 
 		// Create an image object
 		const image = new Image();
@@ -17,7 +17,5 @@ export function createImgFromUrl(url: string, width=512, height=512) :Promise<HT
 		}
 
 	})
-
-
 
 }
