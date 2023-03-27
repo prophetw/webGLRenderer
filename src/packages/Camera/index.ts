@@ -6,24 +6,114 @@ function radiansToAngle(radian: number){
 function angleToRadians(angle: number){
 	return Math.PI/180 * angle
 }
-
+type Num3Ary = [number, number, number]
 class Camera {
-	up: twgl.v3.Vec3
-	right: twgl.v3.Vec3
-	direction: twgl.v3.Vec3
-	positionWC: twgl.v3.Vec3
-	viewMatrix: twgl.m4.Mat4 // view
-	invViewMatrix: twgl.m4.Mat4 // camera matrix
+	_up: twgl.v3.Vec3
+	_right: twgl.v3.Vec3
+	_direction: twgl.v3.Vec3
+	_positionWC: twgl.v3.Vec3
+	_target: twgl.v3.Vec3
+	_position: twgl.v3.Vec3
+	_viewMatrix: twgl.m4.Mat4 // view
+	_invViewMatrix: twgl.m4.Mat4 // camera matrix
+	_cameraChanged: boolean
 	constructor(){
-		this.up = twgl.v3.create()
-		this.right = twgl.v3.create()
-		this.direction = twgl.v3.create()
-		this.positionWC = twgl.v3.create()
-		this.viewMatrix = twgl.m4.identity()
-		this.invViewMatrix = twgl.m4.identity()
+		this._up = twgl.v3.create()
+		this._right = twgl.v3.create()
+		this._direction = twgl.v3.create()
+		this._positionWC = twgl.v3.create()
+		this._target = twgl.v3.create()
+		this._position = twgl.v3.create()
+		this._viewMatrix = twgl.m4.identity()
+		this._invViewMatrix = twgl.m4.identity() // inverse of viewMatrix
+		this.registerEvent()
+		this._cameraChanged = false
+	}
+	get up(){
+		return this._up
+	}
+	set up(val: twgl.v3.Vec3){
+		this._up = val
+		this.updateViewMatrix()
+	}
+	get right(){
+		return this._right
+	}
+	set right(val: twgl.v3.Vec3){
+		this._right = val
+		this.updateViewMatrix()
+	}
+	get direction(){
+		return this._direction
+	}
+	set direction(val: twgl.v3.Vec3){
+		this._direction = val
+		this.updateViewMatrix()
+	}
+	get positionWC(){
+		return this._positionWC
+	}
+	set positionWC(val: twgl.v3.Vec3){
+		this._positionWC = val
+		this.updateViewMatrix()
+	}
+	get position(){
+		return this._position
+	}
+	set position(val: twgl.v3.Vec3){
+		this._positionWC = val
+		this.updateViewMatrix()
+	}
+	get viewMatrix(){
+		return this._viewMatrix
+	}
+	set viewMatrix(val: twgl.m4.Mat4){
+		this._viewMatrix = val
+		this.viewMatrixIsUpdated()
+	}
+	get invViewMatrix(){
+		return this._invViewMatrix
+	}
+	set invViewMatrix(val: twgl.m4.Mat4){
+		this._invViewMatrix = val
 	}
 	updateViewMatrix(){
+		// up right direction and position changed calc new view matrix
+		// const direction = twgl.v3.subtract(this.positionWC, this._target)
+		// this.direction = twgl.v3.normalize(direction)
+		twgl.m4.lookAt(this.positionWC, this._target, this.up)
 
+	}
+	viewMatrixIsUpdated(){
+		// calculate up direction right and position from view matrix
+
+	}
+	registerEvent(){
+		// zoom in zoom out
+		// move front back left right
+		// rotate 
+
+	}
+	setViewMatrix(viewMatrix: twgl.m4.Mat4){
+		this.viewMatrix = viewMatrix
+	}
+	setTransform(){
+
+	}
+	rotate(){
+
+	}
+	zoomIn(){
+
+	}
+	zoomOut(){
+
+	}
+	move(){
+
+	}
+	cameraChanged(){
+		return this._cameraChanged
 	}
 }
 
@@ -146,6 +236,13 @@ class OrthographicFrustum extends Frustum{
 		this.projectionMatrix = twgl.m4.ortho(this.left, this.right, this.bottom, this.top, this.near, this.far)
 		this.invProjMatrix = twgl.m4.inverse(this.projectionMatrix)
 	}
+}
+
+export {
+	PerspectiveFrustum,
+	OrthographicFrustum,
+	radiansToAngle,
+	angleToRadians
 }
 
 export default Camera
