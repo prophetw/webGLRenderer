@@ -17,17 +17,18 @@ class Camera {
 	_viewMatrix: twgl.m4.Mat4 // view
 	_invViewMatrix: twgl.m4.Mat4 // camera matrix
 	_cameraChanged: boolean
-	constructor(){
-		this._up = twgl.v3.create()
+	constructor(cameraPos: twgl.v3.Vec3, target: twgl.v3.Vec3, up: twgl.v3.Vec3){
+		this._up = up || twgl.v3.create()
 		this._right = twgl.v3.create()
 		this._direction = twgl.v3.create()
-		this._positionWC = twgl.v3.create()
-		this._target = twgl.v3.create()
+		this._positionWC = cameraPos || twgl.v3.create()
+		this._target = target || twgl.v3.create()
 		this._position = twgl.v3.create()
 		this._viewMatrix = twgl.m4.identity()
 		this._invViewMatrix = twgl.m4.identity() // inverse of viewMatrix
-		this.registerEvent()
 		this._cameraChanged = false
+		this.updateViewMatrix()
+		this.registerEvent()
 	}
 	get up(){
 		return this._up
@@ -79,10 +80,11 @@ class Camera {
 	}
 	updateViewMatrix(){
 		// up right direction and position changed calc new view matrix
-		// const direction = twgl.v3.subtract(this.positionWC, this._target)
-		// this.direction = twgl.v3.normalize(direction)
-		twgl.m4.lookAt(this.positionWC, this._target, this.up)
-
+		const direction = twgl.v3.subtract(this.positionWC, this._target)
+		this.direction = twgl.v3.normalize(direction)
+		const cameraMatrix = twgl.m4.lookAt(this.positionWC, this._target, this.up)
+		this.invViewMatrix = cameraMatrix
+		this.viewMatrix = twgl.m4.inverse(cameraMatrix)
 	}
 	viewMatrixIsUpdated(){
 		// calculate up direction right and position from view matrix
