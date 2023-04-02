@@ -1,0 +1,1 @@
+// camera + cube in scene
