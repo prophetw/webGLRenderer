@@ -1,13 +1,18 @@
 import * as twgl from 'twgl.js'
+import Scene from '../Scene'
 
+// angleToRadians
 function radiansToAngle(radian: number){
 	return 180 / Math.PI * radian
 }
+
 function angleToRadians(angle: number){
 	return Math.PI/180 * angle
 }
+
 type Num3Ary = [number, number, number]
 class Camera {
+	scene: Scene
 	_up: twgl.v3.Vec3
 	_right: twgl.v3.Vec3
 	_direction: twgl.v3.Vec3
@@ -17,7 +22,8 @@ class Camera {
 	_viewMatrix: twgl.m4.Mat4 // view
 	_invViewMatrix: twgl.m4.Mat4 // camera matrix
 	_cameraChanged: boolean
-	constructor(cameraPos: twgl.v3.Vec3, target: twgl.v3.Vec3, up: twgl.v3.Vec3){
+	constructor(scene: Scene, cameraPos: twgl.v3.Vec3, target: twgl.v3.Vec3, up: twgl.v3.Vec3){
+		this.scene = scene;
 		this._up = up || twgl.v3.create()
 		this._right = twgl.v3.create()
 		this._direction = twgl.v3.create()
@@ -90,17 +96,27 @@ class Camera {
 		// calculate up direction right and position from view matrix
 
 	}
+	
+	// zoom in zoom out
+	// move front back left right
+	// rotate 
 	registerEvent(){
-		// zoom in zoom out
-		// move front back left right
-		// rotate 
-
+		// mouse wheel
+		// mouse move
+		// key down
+		// key up
+		// touch start
+		// touch move
+		// touch end
+		// touch cancel
 	}
 	setViewMatrix(viewMatrix: twgl.m4.Mat4){
 		this.viewMatrix = viewMatrix
 	}
-	setTransform(){
 
+	setTransform(){
+		// set view matrix
+		// set projection matrix
 	}
 	rotate(){
 
